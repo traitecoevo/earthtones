@@ -1,0 +1,50 @@
+url: https://traitecoevo.github.io/APCalign/
+template:
+  bootstrap: 5
+  bootswatch: litera
+
+navbar:
+  bg: light
+  type: light
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/traitecoevo/APCalign/
+    articles:
+      text: Articles
+      menu:
+      - text: Data sources (APC & APNI)
+        href: articles/articles/data-providers.html
+      - text: Taxon matching
+        href: articles/updating-taxon-names.html
+      - text: Using APC versions for reproducibility
+        href:  articles/reproducibility.html
+        
+
+reference:
+- subtitle: Align and update taxon names
+- contents:
+  - create_taxonomic_update_lookup
+  - align_taxa
+  - update_taxonomy
+  - get_apc_genus_family_lookup
+- subtitle: Standardise and simplify plant taxon names
+- contents:
+  - standardise_names
+  - standardise_taxon_rank
+  - strip_names
+  - strip_names_extra
+- subtitle: Established status across states/territories
+- contents:
+  - create_species_state_origin_matrix
+  - state_diversity_counts
+  - native_anywhere_in_australia
+- subtitle: Data
+- contents:
+  - load_taxonomic_resources
+  - get_versions
+  - default_version
+  - gbif_lite
