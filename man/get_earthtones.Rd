@@ -20,11 +20,11 @@ get_earthtones(
 
 \item{longitude}{center of the returned satellite image}
 
-\item{zoom}{generally this should be between 2 and 20; higher values zoom in closer to the target lat/long; for details see \code{\link{get_map}}}
+\item{zoom}{generally this should be between 2 and 20; higher values zoom in closer to the target lat/long; for details see \code{\link[ggmap]{get_map}}}
 
 \item{number_of_colors}{how many colors do you want?}
 
-\item{method}{specifies clustering method. Options are \code{\link{kmeans}} or \code{\link{pam}} (partitioning around medoids)}
+\item{method}{specifies clustering method. Options are \code{\link[stats]{kmeans}} or \code{\link[cluster]{pam}} (partitioning around medoids)}
 
 \item{sampleRate}{subsampling factor - bigger number = more subsampling and less computation}
 

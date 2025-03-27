@@ -17,6 +17,6 @@
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^revdep
-^.DS_Store
-^help
-
+^.DS_Store$
+^help$
+^readme_files$

@@ -1,7 +1,7 @@
 Package: earthtones
 Title: Derive a Color Palette from a Particular Location on Earth
 Version: 0.1.2
-Date: 2019-01-13
+Date: 2025-03-28
 Description: Downloads a satellite image via Google Maps/Earth (these are
     originally from a variety of aerial photography sources), 
     translates the image into a perceptually uniform color space,
@@ -14,6 +14,7 @@ License: MIT + file LICENSE
 LazyData: true
 Author: Will Cornwell, Mitch Lyons, Nick Murray
 Maintainer: Will Cornwell <wcornwell@gmail.com>
+Encoding: UTF-8
 Imports:
   ggmap (>= 2.6.1)
 Suggests: 

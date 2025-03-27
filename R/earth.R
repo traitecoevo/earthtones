@@ -8,11 +8,11 @@
 ##'
 ##' @param longitude center of the returned satellite image
 ##'
-##' @param zoom generally this should be between 2 and 20; higher values zoom in closer to the target lat/long; for details see \code{\link{get_map}}
+##' @param zoom generally this should be between 2 and 20; higher values zoom in closer to the target lat/long; for details see \code{\link[ggmap]{get_map}}
 ##'
 ##' @param number_of_colors how many colors do you want?
 ##' 
-##' @param method specifies clustering method. Options are \code{\link{kmeans}} or \code{\link{pam}} (partitioning around medoids)
+##' @param method specifies clustering method. Options are \code{\link[stats]{kmeans}} or \code{\link[cluster]{pam}} (partitioning around medoids)
 ##' 
 ##' @param sampleRate subsampling factor - bigger number = more subsampling and less computation
 ##' 

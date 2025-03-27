@@ -4,7 +4,7 @@
 .Ruserdata
 taxon_list.csv
 taxonomic_updates.csv
-.DS_Store
+*.DS_Store
 ignore/
 output/
 inst/doc
@@ -12,5 +12,3 @@ docs/
 /doc/
 /Meta/
 revdep/
-inst/cheatsheet/APCalign-cheatsheet.pptx
-inst/cheatsheet/establishment-means.pdf
