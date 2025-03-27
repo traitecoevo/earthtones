@@ -1,17 +1,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Build Status](https://travis-ci.org/wcornwell/earthtones.svg?branch=master)](https://travis-ci.org/wcornwell/earthtones) [![codecov](https://codecov.io/gh/wcornwell/earthtones/branch/master/graph/badge.svg)](https://codecov.io/gh/wcornwell/earthtones)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)  [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.1-orange.svg?style=flat-square)](commits/master)
 
-------------------------------------------------------------------------
 
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-6666ff.svg)](https://cran.r-project.org/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones)
-
-[![packageversion](https://img.shields.io/badge/Package%20version-0.1.1-orange.svg?style=flat-square)](commits/master)
-
-------------------------------------------------------------------------
-
-[![Last-changedate](https://img.shields.io/badge/last%20change-2019--02--06-yellowgreen.svg)](/commits/master)
-
-**PLEASE NOTE:** Google recently changed their API which made it much harder to get the R library `ggmap` (on which earthtones depends) to work. Please see the [ggmap github page for how to get ggmap to work with the new Google API](https://github.com/dkahle/ggmap), then come back here and install `earthtones`.
+### **PLEASE NOTE:** Google recently changed their API which made it much harder to get the R library `ggmap` (on which earthtones depends) to work. Please see the [ggmap github page for how to get ggmap to work with the new Google API](https://github.com/dkahle/ggmap), then come back here and install `earthtones`.
 
 Here is how to install and load the `earthtones` package from CRAN:
 
