@@ -18,11 +18,11 @@
 ##' 
 ##' @param include.map logical flag that determines whether to return the satellite image with the data object; for exploring the world leave this as TRUE; if/when you settle on a color scheme and are using this within a visualization, change to FALSE and the function will return a normal R-style color palette.  
 ##' 
-##' @param ... additional arguments passed to \code{\link{get_map}}
+##' @param ... additional arguments passed to \code{\link[ggmap]{get_map}}
 ##'
 ##' @details Different parts of the world have different color diversity.  Zoom is also especially important.  To visualize the results, simply print the resulting object.  
 ##' 
-##' @seealso \code{\link{get_map}}, \code{\link{kmeans}} 
+##' @seealso \code{\link[ggmap]{get_map}}, \code{\link[stats]{kmeans}} 
 ##' @import grDevices stats graphics
 ##' @export
 ##' @examples

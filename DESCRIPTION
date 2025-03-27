@@ -1,6 +1,6 @@
 Package: earthtones
 Title: Derive a Color Palette from a Particular Location on Earth
-Version: 0.1.1
+Version: 0.1.2
 Date: 2019-01-13
 Description: Downloads a satellite image via Google Maps/Earth (these are
     originally from a variety of aerial photography sources), 
@@ -22,4 +22,4 @@ Suggests:
   knitr,
   rmarkdown,
   ggplot2
-RoxygenNote: 6.0.1
+RoxygenNote: 7.3.2
