@@ -1,7 +1,17 @@
 Package: earthtones
 Title: Derive a Color Palette from a Particular Location on Earth
 Version: 0.1.2
-Date: 2025-03-28
+Authors@R: c(person(given = "Will",
+                      family = "Cornwell",
+                      role = c("aut", "cre"),
+                      email = "wcornwell@gmail.com",
+                      comment = c(ORCID = "0000-0003-4080-4073")),
+               person(given = "Mitch",
+                      family = "Lyons",
+                      role = "aut"),
+               person(given = "Nick",
+                      family = "Murray",
+                      role = "aut"))
 Description: Downloads a satellite image via Google Maps/Earth (these are
     originally from a variety of aerial photography sources), 
     translates the image into a perceptually uniform color space,
@@ -12,7 +22,6 @@ Depends:
     R (>= 3.1.0)
 License: MIT + file LICENSE
 LazyData: true
-Author: Will Cornwell, Mitch Lyons, Nick Murray
 Maintainer: Will Cornwell <wcornwell@gmail.com>
 Encoding: UTF-8
 Imports:
