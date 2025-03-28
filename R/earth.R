@@ -33,58 +33,96 @@
 ##' }
 ##' 
 
-get_earthtones <- function(latitude=50.759, longitude=-125.673,
-                           zoom=11,number_of_colors=3,method="pam",
-                           sampleRate=500,include.map=TRUE,...) {
-  # test specified method is supported
-  supported_methods<-c("kmeans","pam")
+get_earthtones <- function(latitude = 50.759, longitude = -125.673,
+                           zoom = 11, number_of_colors = 3, method = "pam",
+                           sampleRate = 500, include.map = TRUE,
+                           provider = "Esri.WorldImagery", ...) {
+  
+  # enforce practical zoom limits
+  min_zoom <- 0
+  max_zoom <- 13
+  
+  if (!is.numeric(zoom) || length(zoom) != 1 || zoom < min_zoom || zoom > max_zoom) {
+    stop(sprintf("Zoom level must be a single numeric value between %d (world view) and %d (maximum detail). Provided: %s",
+                 min_zoom, max_zoom, zoom))
+  }
+  
+  supported_methods <- c("kmeans", "pam")
   if (!method %in% supported_methods) {
-    stop(paste0("method specified is not valid (typo?) or not yet supported, please choose from: ",
+    stop(paste0("Method specified is invalid or unsupported. Choose from: ",
                 paste(supported_methods, collapse = ", ")))
   }
   
-  map<-ggmap::get_map(location = c(longitude,latitude), maptype ="satellite",zoom=zoom,...)
-  col.out <- get_colors_from_map(map, number_of_colors, clust.method=method, subsampleRate=sampleRate)
-  if (include.map){
-    out.col<-list()
-    out.col$pal <- col.out
-    out.col$map <- map
+  # Create an sf point geometry and transform to Web Mercator for bbox
+  point_sf <- sf::st_sfc(sf::st_point(c(longitude, latitude)), crs = 4326)
+  point_3857 <- sf::st_transform(point_sf, 3857)
+  
+  # Define bbox around the point in meters, scaled roughly by zoom
+  bbox_size <- 5000 * (15 - zoom)  
+  bbox <- sf::st_bbox(sf::st_buffer(point_3857, dist = bbox_size))
+  
+  # Get raster tiles from maptiles (static raster image)
+  map_raster <- maptiles::get_tiles(x = bbox, provider = provider, crop = TRUE, zoom = zoom)
+  
+  # Extract colors from the raster image
+  col.out <- get_colors_from_raster(map_raster, number_of_colors, method, sampleRate)
+  
+  if (include.map) {
+    out.col <- list(pal = col.out, map = map_raster)
     return(structure(out.col, class = "palette"))
-  }
-  if (!include.map){
+  } else {
     return(col.out)
   }
 }
+
+# Function to extract colors from raster using clustering
+get_colors_from_raster <- function(raster_img, number_of_colors, clust.method, subsampleRate) {
+  if (subsampleRate < 300 && clust.method == "pam") {
+    message("Pam can be slow; consider a larger sampleRate.")
+  }
   
-##' @export
-print.palette <- function(x, ...) {
-  number_of_colors<-length(x$pal)
-  par(mfrow=c(2,1),mar = c(0.5, 0.5, 0.5, 0.5))
-  plot(x$map)
-  image(1:number_of_colors, 1, as.matrix(1:number_of_colors), col = x$pal,ylab = "", 
-        xlab="", xaxt = "n", yaxt = "n", bty = "n")
+  # Extract raster values explicitly as a matrix
+  raster_values <- terra::values(raster_img, mat = TRUE)
+  raster_values <- na.omit(raster_values)
+  
+  # Ensure raster_values is a matrix with 3 columns (RGB)
+  if (!is.matrix(raster_values) || ncol(raster_values) < 3) {
+    stop("Raster values extraction failed or raster does not have RGB bands.")
+  }
+  
+  # Subsample for speed
+  if (subsampleRate > 1) {
+    raster_values <- raster_values[seq(1, nrow(raster_values), by = subsampleRate), ]
+  }
+  
+  # RGB to LAB conversion
+  col.vec.lab <- convertColor(raster_values / 255, from = "sRGB", to = "Lab")
+  lab.restructure <- data.frame(L = col.vec.lab[, 1], a = col.vec.lab[, 2], b = col.vec.lab[, 3])
+  
+  if (clust.method == "kmeans") {
+    out <- kmeans(lab.restructure, number_of_colors)
+    out.rgb <- convertColor(out$centers, from = "Lab", to = "sRGB")
+  } else if (clust.method == "pam") {
+    if (!requireNamespace("cluster", quietly = TRUE)) {
+      stop("The 'cluster' package is required for method='pam'. Please install it.")
+    }
+    out <- cluster::pam(lab.restructure, k = number_of_colors)
+    out.rgb <- convertColor(out$medoids, from = "Lab", to = "sRGB")
+  }
+  
+  # Clamp RGB values to valid range [0,1]
+  out.rgb[out.rgb < 0] <- 0
+  out.rgb[out.rgb > 1] <- 1
+  
+  return(rgb(out.rgb))
 }
 
-get_colors_from_map<-function(map,number_of_colors,clust.method,subsampleRate){
-  if (subsampleRate < 300 & clust.method=="pam") {
-    message("Pam can be slow, consider a larger sampleRate?")
-  }
-  map.without.branding<-map[1:1240,1:1280] #exclude google logo from color calculations
-  col.vec<-c(map.without.branding[seq(from=1,to=length(map.without.branding),by=subsampleRate)]) #this is just to speed things up
-  col.vec.rgb<-t(col2rgb(col.vec))
-  col.vec.lab<-convertColor(col.vec.rgb,from="sRGB",to="Lab",scale.in=255)
-  lab.restructure<-data.frame(L=col.vec.lab[,1],a=col.vec.lab[,2],b=col.vec.lab[,3])
-  if (clust.method=="kmeans"){
-    out<-kmeans(lab.restructure,number_of_colors)
-    out.rgb<-convertColor(out$centers,from="Lab",to="sRGB",scale.out=1)
-  }
-  if (clust.method=="pam"){
-    if (!requireNamespace("cluster",quietly=TRUE)) {
-      stop("The 'cluster' package is needed for cluster.method='pam'. Please install it.",
-           call. = FALSE)
-    }
-    out<-cluster::pam(x=lab.restructure,k=number_of_colors,diss=FALSE)
-    out.rgb<-convertColor(out$medoids,from="Lab",to="sRGB",scale.out=1)
-  }
-  return(rgb(out.rgb))
+
+# Print method for palette
+print.palette <- function(x, ...) {
+  number_of_colors <- length(x$pal)
+  par(mfrow = c(2, 1), mar = c(0.5, 0.5, 0.5, 0.5))
+  terra::plotRGB(x$map)
+  image(1:number_of_colors, 1, as.matrix(1:number_of_colors), col = x$pal,
+        ylab = "", xlab = "", xaxt = "n", yaxt = "n", bty = "n")
 }
