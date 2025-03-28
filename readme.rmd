@@ -2,7 +2,7 @@
 title: earthtones
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -15,15 +15,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.1-orange.svg?style=flat-square)](commits/master)
-
-
-**PLEASE NOTE:** Google recently changed their API which made it much harder to get the R library `ggmap` (on which earthtones depends) to work.  Please see the [ggmap github page for how to get ggmap to work with the new Google API](https://github.com/dkahle/ggmap), then come back here and install `earthtones`.  
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones) 
+[![](https://www.r-pkg.org/badges/version/APCalign?color=orange)](https://cran.r-project.org/package=earthtones)
+[![Codecov test coverage](https://codecov.io/gh/traitecoevo/earthtones/branch/master/graph/badge.svg)](https://app.codecov.io/gh/traitecoevo/earthtones?branch=master)
+[![R-CMD-check](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml)
 
 Here is how to install and load the `earthtones` package from CRAN:
 
 ```{r setup, include=TRUE,message=FALSE,warning=FALSE}
-install.packages("earthtones",repos = "https://cloud.r-project.org/")
+#remotes::install_github("wcornwell/earthtones")
 library("earthtones")
 ```
 
@@ -53,23 +53,12 @@ get_earthtones(latitude = 24.2, longitude=-77.88, zoom=11, number_of_colors=5)
 
 Just pick your favorite place in the world, and find out the major colors
 
-Here is San Francisco:
+Here is Sydney:
 
-```{r sf,message=FALSE}
-get_earthtones(latitude = 37.89, longitude=-122.28, zoom=11, number_of_colors=12)
+```{r uluru,message=FALSE}
+get_earthtones(latitude = -25.33, longitude=131.0396, zoom=10, number_of_colors=6)
 ```
 
-or the Golden Gate Bridge:
-
-```{r ggb,message=FALSE}
-get_earthtones(latitude = 37.81391, longitude=-122.478289, zoom=19, number_of_colors=12)
-```
-
-or Sydney Opera House :
-
-```{r opera,message=FALSE}
-get_earthtones(latitude = -33.85745, longitude=151.214722, zoom=17, number_of_colors=10)
-```
 
 If you want to actually use the color scheme for another visualization and not just plot pretty pictures, there is a switch in the `get_earthtones` function: just add `include.map=FALSE` to the function call, and the function will only return the color palette for later use:
 
@@ -122,12 +111,4 @@ The sand-color is perhaps a bit sandier with the PAM approach.  This actually ma
 
 There are some other cool things to do with the cool and images in the [RImagePallette package](https://github.com/joelcarlson/RImagePalette). And of course if you want a quirky cinematic color scheme, check out [wesanderson](https://github.com/karthik/wesanderson).
 
-## Development version
-
-If you'd like to try the most recent development version of `earthtones` run this:
-
-```{r, include=TRUE,message=FALSE,warning=FALSE}
-if(!require(devtools)) install.packages("devtools")
-devtools::install_github("wcornwell/earthtones")
-```
 

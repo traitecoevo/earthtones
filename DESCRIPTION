@@ -1,6 +1,6 @@
 Package: earthtones
 Title: Derive a Color Palette from a Particular Location on Earth
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: c(person(given = "Will",
                       family = "Cornwell",
                       role = c("aut", "cre"),
@@ -25,7 +25,10 @@ LazyData: true
 Maintainer: Will Cornwell <wcornwell@gmail.com>
 Encoding: UTF-8
 Imports:
-  ggmap (>= 2.6.1)
+  maptiles,
+  terra,
+  sf,
+  grDevices
 Suggests: 
   testthat,
   cluster,
