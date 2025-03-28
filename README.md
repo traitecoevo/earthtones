@@ -52,10 +52,10 @@ get_earthtones(latitude = 24.2, longitude=-77.88, zoom=11, number_of_colors=5)
 Just pick your favorite place in the world, and find out the major
 colors
 
-Here is San Francisco:
+Here is Sydney:
 
 ``` r
-get_earthtones(latitude = 36.5, longitude=-122.56, zoom=13, number_of_colors=6)
+get_earthtones(latitude = -25.33, longitude=131.0396, zoom=10, number_of_colors=6)
 ```
 
 ![](readme_files/figure-markdown_github/sf-1.png)<!-- -->
