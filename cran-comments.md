@@ -1,9 +1,9 @@
 ## New Version
-This is a new version to adapt to some changes in the Google Maps API
+This is a new version to adapt to shift away from the Google Maps API to the more friendly maptiles/esri system
 
 ## Test environments
-* local OS X install, R 3.5.0
-* ubuntu 12.04 (on travis-ci), R 3.5.0
+* local OS X install, R 4.4.2
+* ubuntu 12.04 (on travis-ci), R 4.4.2
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -16,4 +16,4 @@ There are no reverse dependencies.
 
 ## Fixes
 
-Adjusting data following note.  
+Adjusted URLs in readme and links to other packages in documentation following CRAN comments, in addition to the major shift to maptiles
