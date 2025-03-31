@@ -21,7 +21,6 @@ Description: Downloads a satellite image via ESRI and maptiles (these are
 Depends:
     R (>= 3.1.0)
 License: MIT + file LICENSE
-LazyData: true
 Maintainer: Will Cornwell <wcornwell@gmail.com>
 Encoding: UTF-8
 Imports:
