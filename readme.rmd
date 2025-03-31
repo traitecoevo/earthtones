@@ -20,15 +20,9 @@ knitr::opts_chunk$set(
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones) 
 [![R-CMD-check](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml)
 
-Here is how to install and load the `earthtones` package from CRAN:
-
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones)
-[![Codecov test coverage](https://codecov.io/gh/traitecoevo/earthtones/branch/master/graph/badge.svg)](https://app.codecov.io/gh/traitecoevo/earthtones?branch=master)
-[![R-CMD-check](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml)
-
 ## Overview
 
-**earthtones** is an R package designed to extract color palettes from satellite imagery, providing visually appealing earth-inspired color schemes.
+**earthtones** is an R package designed to extract color palettes from remote imagery, providing visually appealing earth-inspired color schemes.
 
 ## Table of Contents
 
@@ -68,7 +62,7 @@ library("earthtones")
 
 `earthtones` provides the function `get_earthtones`, which:
 
-1. Downloads satellite imagery from a supported provider (e.g., Esri).
+1. Downloads remote imagery from a supported provider--now using esri as default.
 2. Converts image colors into a perceptually uniform color space ([CIE LAB](https://en.wikipedia.org/wiki/Lab_color_space)).
 3. Identifies dominant colors using clustering methods (`kmeans` or `pam`).
 4. Returns an aesthetically pleasing color palette.
@@ -77,7 +71,7 @@ library("earthtones")
 
 ```{r grand_canyon}
 get_earthtones(latitude = 36.094994, longitude = -111.837962, 
-               zoom = 12, number_of_colors = 8)
+               zoom = 12, number_of_colors = 6)
 ```
 
 Adjust `number_of_colors` to control how many dominant colors are returned. The `zoom` parameter controls the level of detail, with larger numbers providing closer views.
@@ -95,7 +89,7 @@ get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors 
 Earth tones from the iconic Australian landscape:
 
 ```{r uluru}
-get_earthtones(latitude = -25.33, longitude = 131.0396, zoom = 10, number_of_colors = 6)
+get_earthtones(latitude = -25.33, longitude = 131.0396, zoom = 10, number_of_colors = 4)
 ```
 
 ## Using Palettes in Your Own Visualizations
@@ -121,7 +115,7 @@ library(ggplot2)
 
 # Generate the palette
 bahamas_palette <- get_earthtones(latitude = 24.2, longitude = -77.88,
-                                  zoom = 11, number_of_colors = 5,
+                                  zoom = 11, number_of_colors = 3,
                                   include.map = FALSE)
 
 # Example ggplot
