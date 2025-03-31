@@ -119,22 +119,29 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">36.094994</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">111.837962</span>, </span>
 <span>               zoom <span class="op">=</span> <span class="fl">12</span>, number_of_colors <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/grand_canyon-1.png"><!-- --></p>
+<p><img src="reference/figures/grandcanyon-1.png"><!-- --></p>
 <p>Adjust <code>number_of_colors</code> to control how many dominant colors are returned. The <code>zoom</code> parameter controls the level of detail, with larger numbers providing closer views.</p>
 </div>
 <div class="section level3">
 <h3 id="example-the-bahamas">Example: The Bahamas<a class="anchor" aria-label="anchor" href="#example-the-bahamas"></a>
 </h3>
-<p>Explore vibrant tropical colors:</p>
+<p>Explore vibrant tropical colors, using the default kmeans clustering:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">24.2</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">77.88</span>, zoom <span class="op">=</span> <span class="fl">11</span>, number_of_colors <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/bahamas-1.png"><!-- --></p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">24.2</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">77.88</span>, zoom <span class="op">=</span> <span class="fl">11</span>, number_of_colors <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>               method<span class="op">=</span><span class="st">"kmeans"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/bahamaskmeans-1.png"><!-- --></p>
+<p>or use a different clustering algorithm (Partitioning Around Medoids) to choose the colors from image:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">24.2</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">77.88</span>, </span>
+<span>               zoom <span class="op">=</span> <span class="fl">11</span>, number_of_colors <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>              method<span class="op">=</span><span class="st">"pam"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/bahamaspam-1.png"><!-- --></p>
 </div>
 <div class="section level3">
 <h3 id="example-uluru-australia">Example: Uluru, Australia<a class="anchor" aria-label="anchor" href="#example-uluru-australia"></a>
 </h3>
 <p>Earth tones from the iconic Australian landscape:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="op">-</span><span class="fl">25.33</span>, longitude <span class="op">=</span> <span class="fl">131.0396</span>, zoom <span class="op">=</span> <span class="fl">10</span>, number_of_colors <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/uluru-1.png"><!-- --></p>
 </div>
@@ -143,7 +150,7 @@
 <h2 id="using-palettes-in-your-own-visualizations">Using Palettes in Your Own Visualizations<a class="anchor" aria-label="anchor" href="#using-palettes-in-your-own-visualizations"></a>
 </h2>
 <p>To retrieve the color palette without plotting the map, set <code>include.map = FALSE</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">24.2</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">77.88</span>,</span>
 <span>                          zoom <span class="op">=</span> <span class="fl">11</span>, number_of_colors <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>                          include.map <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -155,7 +162,7 @@
 <h3 id="example-with-ggplot2">Example with ggplot2<a class="anchor" aria-label="anchor" href="#example-with-ggplot2"></a>
 </h3>
 <p>Here’s how you might apply the palette to a <code>ggplot2</code> visualization:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Generate the palette</span></span>
@@ -182,7 +189,7 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>If you use <strong>earthtones</strong> in your research or projects, please cite it using:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"earthtones"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'earthtones' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
