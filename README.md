@@ -38,21 +38,6 @@ Or the latest development version from GitHub:
 
 ``` r
 remotes::install_github("wcornwell/earthtones")
-#> raster (3.6-31 -> 3.6-32) [CRAN]
-#> curl   (6.2.1  -> 6.2.2 ) [CRAN]
-#> sf     (1.0-19 -> 1.0-20) [CRAN]
-#> 
-#> The downloaded binary packages are in
-#>  /var/folders/sp/cq595tt55hz61x8tv8zz9x400000gq/T//RtmpXLqmFJ/downloaded_packages
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>      checking for file ‘/private/var/folders/sp/cq595tt55hz61x8tv8zz9x400000gq/T/RtmpXLqmFJ/remotes108d56690adb4/traitecoevo-earthtones-91efb6b/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/sp/cq595tt55hz61x8tv8zz9x400000gq/T/RtmpXLqmFJ/remotes108d56690adb4/traitecoevo-earthtones-91efb6b/DESCRIPTION’
-#>   ─  preparing ‘earthtones’:
-#>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building ‘earthtones_0.2.0.tar.gz’
-#>      
-#> 
 ```
 
 Load the package:
@@ -149,8 +134,8 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
 
 Contributions are welcome! Please report issues or suggest features on
 the [GitHub issues
-page](https://github.com/wcornwell/earthtones/issues). Pull requests are
-also encouraged.
+page](https://github.com/traitecoevo/earthtones/issues). Pull requests
+are also encouraged.
 
 ## Citation
 
@@ -163,7 +148,7 @@ citation("earthtones")
 #> 
 #>   Cornwell W, Lyons M, Murray N (2025). _earthtones: Derive a Color
 #>   Palette from a Particular Location on Earth_. R package version
-#>   0.2.0, commit 91efb6bfe16acdf7a87db0646e87963b470d94d4,
+#>   0.2.0, commit 07ed455773577ab5b0a2a68cd45b0f1384ab2a7f,
 #>   <https://github.com/wcornwell/earthtones>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -172,7 +157,7 @@ citation("earthtones")
 #>     title = {earthtones: Derive a Color Palette from a Particular Location on Earth},
 #>     author = {Will Cornwell and Mitch Lyons and Nick Murray},
 #>     year = {2025},
-#>     note = {R package version 0.2.0, commit 91efb6bfe16acdf7a87db0646e87963b470d94d4},
+#>     note = {R package version 0.2.0, commit 07ed455773577ab5b0a2a68cd45b0f1384ab2a7f},
 #>     url = {https://github.com/wcornwell/earthtones},
 #>   }
 ```

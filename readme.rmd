@@ -49,7 +49,7 @@ Install the released version from CRAN:
 
 Or the latest development version from GitHub:
 
-```{r}
+```{r, message=FALSE}
 remotes::install_github("wcornwell/earthtones")
 ```
 
@@ -130,7 +130,7 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
 
 ## Contributing
 
-Contributions are welcome! Please report issues or suggest features on the [GitHub issues page](https://github.com/wcornwell/earthtones/issues). Pull requests are also encouraged.
+Contributions are welcome! Please report issues or suggest features on the [GitHub issues page](https://github.com/traitecoevo/earthtones/issues). Pull requests are also encouraged.
 
 ## Citation
 
