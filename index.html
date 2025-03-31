@@ -60,12 +60,10 @@
   <div class="contents col-md-9">
 
 
-<p>Here is how to install and load the <code>earthtones</code> package from CRAN:</p>
-<p><a href="https://cran.r-project.org/package=earthtones" class="external-link"><img src="http://www.r-pkg.org/badges/version/earthtones" alt="CRAN_Status_Badge"></a> <a href="https://app.codecov.io/gh/traitecoevo/earthtones?branch=master" class="external-link"><img src="https://codecov.io/gh/traitecoevo/earthtones/branch/master/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><strong>earthtones</strong> is an R package designed to extract color palettes from satellite imagery, providing visually appealing earth-inspired color schemes.</p>
+<p><strong>earthtones</strong> is an R package designed to extract color palettes from remote imagery, providing visually appealing earth-inspired color schemes.</p>
 </div>
 <div class="section level2">
 <h2 id="table-of-contents">Table of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
@@ -110,7 +108,7 @@
 </h2>
 <p><code>earthtones</code> provides the function <code>get_earthtones</code>, which:</p>
 <ol style="list-style-type: decimal">
-<li>Downloads satellite imagery from a supported provider (e.g., Esri).</li>
+<li>Downloads remote imagery from a supported provider–now using esri as default.</li>
 <li>Converts image colors into a perceptually uniform color space (<a href="https://en.wikipedia.org/wiki/Lab_color_space" class="external-link">CIE LAB</a>).</li>
 <li>Identifies dominant colors using clustering methods (<code>kmeans</code> or <code>pam</code>).</li>
 <li>Returns an aesthetically pleasing color palette.</li>
@@ -120,7 +118,7 @@
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">36.094994</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">111.837962</span>, </span>
-<span>               zoom <span class="op">=</span> <span class="fl">12</span>, number_of_colors <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
+<span>               zoom <span class="op">=</span> <span class="fl">12</span>, number_of_colors <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/grand_canyon-1.png"><!-- --></p>
 <p>Adjust <code>number_of_colors</code> to control how many dominant colors are returned. The <code>zoom</code> parameter controls the level of detail, with larger numbers providing closer views.</p>
 </div>
@@ -137,7 +135,7 @@
 </h3>
 <p>Earth tones from the iconic Australian landscape:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="op">-</span><span class="fl">25.33</span>, longitude <span class="op">=</span> <span class="fl">131.0396</span>, zoom <span class="op">=</span> <span class="fl">10</span>, number_of_colors <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="op">-</span><span class="fl">25.33</span>, longitude <span class="op">=</span> <span class="fl">131.0396</span>, zoom <span class="op">=</span> <span class="fl">10</span>, number_of_colors <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/uluru-1.png"><!-- --></p>
 </div>
 </div>
@@ -162,7 +160,7 @@
 <span></span>
 <span><span class="co"># Generate the palette</span></span>
 <span><span class="va">bahamas_palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_earthtones.html">get_earthtones</a></span><span class="op">(</span>latitude <span class="op">=</span> <span class="fl">24.2</span>, longitude <span class="op">=</span> <span class="op">-</span><span class="fl">77.88</span>,</span>
-<span>                                  zoom <span class="op">=</span> <span class="fl">11</span>, number_of_colors <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>                                  zoom <span class="op">=</span> <span class="fl">11</span>, number_of_colors <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                                  include.map <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Example ggplot</span></span>
