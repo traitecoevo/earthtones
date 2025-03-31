@@ -10,17 +10,18 @@ name: R-hub
 run-name: "${{ github.event.inputs.id }}: ${{ github.event.inputs.name || format('Manually run by {0}', github.triggering_actor) }}"
 
 on:
-  push:
-    branches:
-      - main
-      - master
   workflow_dispatch:
     inputs:
       config:
-        description: 'A comma-separated list of R-hub platforms.'
+        description: 'A comma separated list of R-hub platforms to use.'
         type: string
         default: 'linux,windows,macos'
-
+      name:
+        description: 'Run name. You can leave this empty now.'
+        type: string
+      id:
+        description: 'Unique ID. You can leave this empty now.'
+        type: string
 
 jobs:
 
