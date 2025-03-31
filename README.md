@@ -11,6 +11,21 @@ coverage](https://codecov.io/gh/traitecoevo/earthtones/branch/master/graph/badge
 satellite imagery, providing visually appealing earth-inspired color
 schemes.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Example: Grand Canyon](#example-grand-canyon)
+  - [Example: The Bahamas](#example-the-bahamas)
+  - [Example: Uluru, Australia](#example-uluru-australia)
+- [Using Palettes in Your Own
+  Visualizations](#using-palettes-in-your-own-visualizations)
+  - [ggplot2 Example](#example-with-ggplot2)
+- [Contributing](#contributing)
+- [Citation](#citation)
+- [License](#license)
+
 ## Installation
 
 Install the released version from CRAN:
@@ -22,7 +37,22 @@ Install the released version from CRAN:
 Or the latest development version from GitHub:
 
 ``` r
-#remotes::install_github("wcornwell/earthtones")
+remotes::install_github("wcornwell/earthtones")
+#> raster (3.6-31 -> 3.6-32) [CRAN]
+#> curl   (6.2.1  -> 6.2.2 ) [CRAN]
+#> sf     (1.0-19 -> 1.0-20) [CRAN]
+#> 
+#> The downloaded binary packages are in
+#>  /var/folders/sp/cq595tt55hz61x8tv8zz9x400000gq/T//RtmpXLqmFJ/downloaded_packages
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>      checking for file ‘/private/var/folders/sp/cq595tt55hz61x8tv8zz9x400000gq/T/RtmpXLqmFJ/remotes108d56690adb4/traitecoevo-earthtones-91efb6b/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/sp/cq595tt55hz61x8tv8zz9x400000gq/T/RtmpXLqmFJ/remotes108d56690adb4/traitecoevo-earthtones-91efb6b/DESCRIPTION’
+#>   ─  preparing ‘earthtones’:
+#>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+#>   ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>   ─  building ‘earthtones_0.2.0.tar.gz’
+#>      
+#> 
 ```
 
 Load the package:
@@ -114,3 +144,39 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
 ```
 
 ![](readme_files/figure-markdown_github/ggplot_example-1.png)<!-- -->
+
+## Contributing
+
+Contributions are welcome! Please report issues or suggest features on
+the [GitHub issues
+page](https://github.com/wcornwell/earthtones/issues). Pull requests are
+also encouraged.
+
+## Citation
+
+If you use **earthtones** in your research or projects, please cite it
+using:
+
+``` r
+citation("earthtones")
+#> To cite package 'earthtones' in publications use:
+#> 
+#>   Cornwell W, Lyons M, Murray N (2025). _earthtones: Derive a Color
+#>   Palette from a Particular Location on Earth_. R package version
+#>   0.2.0, commit 91efb6bfe16acdf7a87db0646e87963b470d94d4,
+#>   <https://github.com/wcornwell/earthtones>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {earthtones: Derive a Color Palette from a Particular Location on Earth},
+#>     author = {Will Cornwell and Mitch Lyons and Nick Murray},
+#>     year = {2025},
+#>     note = {R package version 0.2.0, commit 91efb6bfe16acdf7a87db0646e87963b470d94d4},
+#>     url = {https://github.com/wcornwell/earthtones},
+#>   }
+```
+
+## License
+
+This package is released under the MIT License.

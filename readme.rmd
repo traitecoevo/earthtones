@@ -25,6 +25,20 @@ knitr::opts_chunk$set(
 
 **earthtones** is an R package designed to extract color palettes from satellite imagery, providing visually appealing earth-inspired color schemes.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Example: Grand Canyon](#example-grand-canyon)
+  - [Example: The Bahamas](#example-the-bahamas)
+  - [Example: Uluru, Australia](#example-uluru-australia)
+- [Using Palettes in Your Own Visualizations](#using-palettes-in-your-own-visualizations)
+  - [ggplot2 Example](#example-with-ggplot2)
+- [Contributing](#contributing)
+- [Citation](#citation)
+- [License](#license)
+
 ## Installation
 
 Install the released version from CRAN:
@@ -36,7 +50,7 @@ Install the released version from CRAN:
 Or the latest development version from GitHub:
 
 ```{r}
-#remotes::install_github("wcornwell/earthtones")
+remotes::install_github("wcornwell/earthtones")
 ```
 
 Load the package:
@@ -113,3 +127,19 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
   labs(title = "MTCARS Cylinders with Bahamas Earthtones",
        fill = "Cylinders")
 ```
+
+## Contributing
+
+Contributions are welcome! Please report issues or suggest features on the [GitHub issues page](https://github.com/wcornwell/earthtones/issues). Pull requests are also encouraged.
+
+## Citation
+
+If you use **earthtones** in your research or projects, please cite it using:
+
+```{r}
+citation("earthtones")
+```
+
+## License
+
+This package is released under the MIT License.
