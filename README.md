@@ -63,7 +63,7 @@ get_earthtones(latitude = 36.094994, longitude = -111.837962,
                zoom = 12, number_of_colors = 6)
 ```
 
-![](man/figures/grand_canyon-1.png)<!-- -->
+![](man/figures/grandcanyon-1.png)<!-- -->
 
 Adjust `number_of_colors` to control how many dominant colors are
 returned. The `zoom` parameter controls the level of detail, with larger
@@ -71,13 +71,25 @@ numbers providing closer views.
 
 ### Example: The Bahamas
 
-Explore vibrant tropical colors:
+Explore vibrant tropical colors, using the default kmeans clustering:
 
 ``` r
-get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5)
+get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5,
+               method="kmeans")
 ```
 
-![](man/figures/bahamas-1.png)<!-- -->
+![](man/figures/bahamaskmeans-1.png)<!-- -->
+
+or use a different clustering algorithm (Partitioning Around Medoids) to
+choose the colors from image:
+
+``` r
+get_earthtones(latitude = 24.2, longitude = -77.88, 
+               zoom = 11, number_of_colors = 5,
+              method="pam")
+```
+
+![](man/figures/bahamaspam-1.png)<!-- -->
 
 ### Example: Uluru, Australia
 

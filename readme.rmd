@@ -69,7 +69,7 @@ library("earthtones")
 
 ### Example: Grand Canyon
 
-```{r grand_canyon}
+```{r grandcanyon}
 get_earthtones(latitude = 36.094994, longitude = -111.837962, 
                zoom = 12, number_of_colors = 6)
 ```
@@ -78,10 +78,19 @@ Adjust `number_of_colors` to control how many dominant colors are returned. The 
 
 ### Example: The Bahamas
 
-Explore vibrant tropical colors:
+Explore vibrant tropical colors, using the default kmeans clustering:
 
-```{r bahamas}
-get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5)
+```{r bahamaskmeans}
+get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5,
+               method="kmeans")
+```
+
+or use a different clustering algorithm (Partitioning Around Medoids) to choose the colors from image:
+
+```{r bahamaspam}
+get_earthtones(latitude = 24.2, longitude = -77.88, 
+               zoom = 11, number_of_colors = 5,
+              method="pam")
 ```
 
 ### Example: Uluru, Australia
