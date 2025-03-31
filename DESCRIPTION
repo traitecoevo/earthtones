@@ -12,7 +12,7 @@ Authors@R: c(person(given = "Will",
                person(given = "Nick",
                       family = "Murray",
                       role = "aut"))
-Description: Downloads a satellite image via Google Maps/Earth (these are
+Description: Downloads a satellite image via ESRI and maptiles (these are
     originally from a variety of aerial photography sources), 
     translates the image into a perceptually uniform color space,
     runs one of a few different clustering algorithms on the colors in the image 

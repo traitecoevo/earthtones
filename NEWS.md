@@ -1,6 +1,6 @@
-# earthtones 0.1.2
+# earthtones 0.2.0
 
-Updating documentation to allow links to help files in other packages to work in html
+Switching from Google to ESRI and from ggmap to maptiles as the supplier of the earth images, after google changed their API to be less friendly to this kind of thing.  
 
 # earthtones 0.1.1
 

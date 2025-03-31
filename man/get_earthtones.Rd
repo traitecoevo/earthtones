@@ -2,7 +2,7 @@
 % Please edit documentation in R/earth.R
 \name{get_earthtones}
 \alias{get_earthtones}
-\title{Find the color palette of a particular place on earth}
+\title{Extract Color Palettes from Satellite Imagery}
 \usage{
 get_earthtones(
   latitude = 50.759,
@@ -12,40 +12,53 @@ get_earthtones(
   method = "pam",
   sampleRate = 500,
   include.map = TRUE,
+  provider = "Esri.WorldImagery",
   ...
 )
 }
 \arguments{
-\item{latitude}{center of the returned satellite image}
+\item{latitude}{Numeric. Latitude coordinate for the center of the satellite image.}
 
-\item{longitude}{center of the returned satellite image}
+\item{longitude}{Numeric. Longitude coordinate for the center of the satellite image.}
 
-\item{zoom}{generally this should be between 2 and 20; higher values zoom in closer to the target lat/long; for details see \code{\link[ggmap]{get_map}}}
+\item{zoom}{Numeric. Zoom level between 0 (whole world) and 13 (high detail). Higher values zoom in closer.}
 
-\item{number_of_colors}{how many colors do you want?}
+\item{number_of_colors}{Numeric. Number of dominant colors to extract.}
 
-\item{method}{specifies clustering method. Options are \code{\link[stats]{kmeans}} or \code{\link[cluster]{pam}} (partitioning around medoids)}
+\item{method}{Character. Clustering method to identify dominant colors. Options are \code{"kmeans"} (\code{\link[stats]{kmeans}}) or \code{"pam"} (\code{\link[cluster]{pam}} - partitioning around medoids).}
 
-\item{sampleRate}{subsampling factor - bigger number = more subsampling and less computation}
+\item{sampleRate}{Numeric. Subsampling factor; higher values reduce computation by sampling fewer pixels.}
 
-\item{include.map}{logical flag that determines whether to return the satellite image with the data object; for exploring the world leave this as TRUE; if/when you settle on a color scheme and are using this within a visualization, change to FALSE and the function will return a normal R-style color palette.}
+\item{include.map}{Logical. If \code{TRUE}, returns both the color palette and the satellite image raster. If \code{FALSE}, returns only the color palette.}
 
-\item{...}{additional arguments passed to \code{\link[ggmap]{get_map}}}
+\item{provider}{Character. Tile provider for satellite imagery. Currently supports \code{"Esri.WorldImagery"}.}
+
+\item{...}{Additional arguments passed to internal functions (currently unused).}
+}
+\value{
+An object of class \code{"palette"} if \code{include.map = TRUE}, containing:
+\itemize{
+  \item \code{pal}: A vector of hexadecimal color codes representing the dominant colors.
+  \item \code{map}: A raster image object of the satellite imagery.
+}
+If \code{include.map = FALSE}, returns a vector of hexadecimal color codes.
 }
 \description{
-Earthtones downloads a satellite image from google earth, translates the image into a perceptually uniform color space, runs one of a few different clustering algorithms on the colors in the image searching for a user supplied number of colors, and returns the resulting color palette.
+Download a satellite image from a selected provider, extract dominant colors, and generate an earth-tone palette.
 }
 \details{
-Different parts of the world have different color diversity.  Zoom is also especially important.  To visualize the results, simply print the resulting object.
+The function retrieves satellite imagery from the specified provider, extracts colors by converting the imagery into a perceptually uniform color space, and applies a clustering algorithm to determine dominant colors. Zoom level and location significantly influence the palette generated.
 }
 \examples{
-
 \dontrun{
-
+# Get a palette for a location in the Bahamas
 get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5)
-}
 
+# Return palette only, without map
+get_earthtones(latitude = 24.2, longitude = -77.88,
+               zoom = 11, number_of_colors = 5, include.map = FALSE)
+}
 }
 \seealso{
-\code{\link[ggmap]{get_map}}, \code{\link[stats]{kmeans}}
+\code{\link[maptiles]{get_tiles}}, \code{\link[stats]{kmeans}}, \code{\link[cluster]{pam}}
 }

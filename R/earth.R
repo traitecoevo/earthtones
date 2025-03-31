@@ -1,37 +1,47 @@
-
-##' Earthtones downloads a satellite image from google earth, translates the image into a perceptually uniform color space, runs one of a few different clustering algorithms on the colors in the image searching for a user supplied number of colors, and returns the resulting color palette.  
+##' Download a satellite image from a selected provider, extract dominant colors, and generate an earth-tone palette.
 ##'
+##' @title Extract Color Palettes from Satellite Imagery
 ##'
-##' @title Find the color palette of a particular place on earth
+##' @param latitude Numeric. Latitude coordinate for the center of the satellite image.
 ##'
-##' @param latitude center of the returned satellite image
+##' @param longitude Numeric. Longitude coordinate for the center of the satellite image.
 ##'
-##' @param longitude center of the returned satellite image
+##' @param zoom Numeric. Zoom level between 0 (whole world) and 13 (high detail). Higher values zoom in closer.
 ##'
-##' @param zoom generally this should be between 2 and 20; higher values zoom in closer to the target lat/long; for details see \code{\link[ggmap]{get_map}}
+##' @param number_of_colors Numeric. Number of dominant colors to extract.
 ##'
-##' @param number_of_colors how many colors do you want?
-##' 
-##' @param method specifies clustering method. Options are \code{\link[stats]{kmeans}} or \code{\link[cluster]{pam}} (partitioning around medoids)
-##' 
-##' @param sampleRate subsampling factor - bigger number = more subsampling and less computation
-##' 
-##' @param include.map logical flag that determines whether to return the satellite image with the data object; for exploring the world leave this as TRUE; if/when you settle on a color scheme and are using this within a visualization, change to FALSE and the function will return a normal R-style color palette.  
-##' 
-##' @param ... additional arguments passed to \code{\link[ggmap]{get_map}}
+##' @param method Character. Clustering method to identify dominant colors. Options are \code{"kmeans"} (\code{\link[stats]{kmeans}}) or \code{"pam"} (\code{\link[cluster]{pam}} - partitioning around medoids).
 ##'
-##' @details Different parts of the world have different color diversity.  Zoom is also especially important.  To visualize the results, simply print the resulting object.  
-##' 
-##' @seealso \code{\link[ggmap]{get_map}}, \code{\link[stats]{kmeans}} 
-##' @import grDevices stats graphics
+##' @param sampleRate Numeric. Subsampling factor; higher values reduce computation by sampling fewer pixels.
+##'
+##' @param include.map Logical. If \code{TRUE}, returns both the color palette and the satellite image raster. If \code{FALSE}, returns only the color palette.
+##'
+##' @param provider Character. Tile provider for satellite imagery. Currently supports \code{"Esri.WorldImagery"}.
+##'
+##' @param ... Additional arguments passed to internal functions (currently unused).
+##'
+##' @details 
+##' The function retrieves satellite imagery from the specified provider, extracts colors by converting the imagery into a perceptually uniform color space, and applies a clustering algorithm to determine dominant colors. Zoom level and location significantly influence the palette generated.
+##'
+##' @return An object of class \code{"palette"} if \code{include.map = TRUE}, containing:
+##' \itemize{
+##'   \item \code{pal}: A vector of hexadecimal color codes representing the dominant colors.
+##'   \item \code{map}: A raster image object of the satellite imagery.
+##' }
+##' If \code{include.map = FALSE}, returns a vector of hexadecimal color codes.
+##'
+##' @seealso \code{\link[maptiles]{get_tiles}}, \code{\link[stats]{kmeans}}, \code{\link[cluster]{pam}}
+##' @import grDevices stats graphics sf maptiles
 ##' @export
 ##' @examples
-##' 
 ##' \dontrun{
-##' 
+##' # Get a palette for a location in the Bahamas
 ##' get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5)
+##'
+##' # Return palette only, without map
+##' get_earthtones(latitude = 24.2, longitude = -77.88,
+##'                zoom = 11, number_of_colors = 5, include.map = FALSE)
 ##' }
-##' 
 
 get_earthtones <- function(latitude = 50.759, longitude = -125.673,
                            zoom = 11, number_of_colors = 3, method = "pam",
@@ -51,6 +61,14 @@ get_earthtones <- function(latitude = 50.759, longitude = -125.673,
   if (!method %in% supported_methods) {
     stop(paste0("Method specified is invalid or unsupported. Choose from: ",
                 paste(supported_methods, collapse = ", ")))
+  }
+  
+  # right now just esri
+  supported_providers <- c("Esri.WorldImagery") # you can expand or shrink this list as needed
+  
+  if (!(provider %in% supported_providers)) {
+    stop(sprintf("Provider '%s' is not supported. Choose from: %s",
+                 provider, paste(supported_providers, collapse = ", ")))
   }
   
   # Create an sf point geometry and transform to Web Mercator for bbox
@@ -75,7 +93,15 @@ get_earthtones <- function(latitude = 50.759, longitude = -125.673,
   }
 }
 
-# Function to extract colors from raster using clustering
+##' Extract Dominant Colors from Raster Image Using Clustering
+##'
+##' @param raster_img Raster object containing satellite imagery data.
+##' @param number_of_colors Numeric. Number of dominant colors to extract.
+##' @param clust.method Character. Clustering method; options are \code{"kmeans"} or \code{"pam"}.
+##' @param subsampleRate Numeric. Subsampling factor to improve performance; higher values reduce computation.
+##'
+##' @return Vector of hexadecimal color codes representing dominant colors.
+##' @noRd
 get_colors_from_raster <- function(raster_img, number_of_colors, clust.method, subsampleRate) {
   if (subsampleRate < 300 && clust.method == "pam") {
     message("Pam can be slow; consider a larger sampleRate.")
@@ -117,8 +143,15 @@ get_colors_from_raster <- function(raster_img, number_of_colors, clust.method, s
   return(rgb(out.rgb))
 }
 
-
-# Print method for palette
+##' Print Method for Palette Objects
+##'
+##' Visualizes the palette and associated satellite image.
+##'
+##' @param x An object of class \code{"palette"}.
+##' @param ... Additional arguments passed to plotting methods.
+##'
+##' @return No return value; called for its side effect of plotting.
+##' @exportS3Method print palette
 print.palette <- function(x, ...) {
   number_of_colors <- length(x$pal)
   par(mfrow = c(2, 1), mar = c(0.5, 0.5, 0.5, 0.5))
