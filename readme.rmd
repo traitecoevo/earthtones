@@ -11,11 +11,16 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "readme_files/figure-markdown_github/",
+  fig.path = "man/figures/",
   message = FALSE,
   warning = FALSE
 )
 ```
+
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones) 
+[![R-CMD-check](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml)
+
+Here is how to install and load the `earthtones` package from CRAN:
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones)
 [![Codecov test coverage](https://codecov.io/gh/traitecoevo/earthtones/branch/master/graph/badge.svg)](https://app.codecov.io/gh/traitecoevo/earthtones?branch=master)
@@ -44,13 +49,13 @@ knitr::opts_chunk$set(
 Install the released version from CRAN:
 
 ```{r}
-#install.packages("earthtones")
+# install.packages("earthtones")
 ```
 
 Or the latest development version from GitHub:
 
 ```{r, message=FALSE}
-remotes::install_github("wcornwell/earthtones")
+# remotes::install_github("traitecoevo/earthtones")
 ```
 
 Load the package:

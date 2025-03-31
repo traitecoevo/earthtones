@@ -1,6 +1,11 @@
 <!-- README.md is generated from README.Rmd. Please edit this file directly. -->
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones)
+[![R-CMD-check](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml)
+
+Here is how to install and load the `earthtones` package from CRAN:
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/earthtones)](https://cran.r-project.org/package=earthtones)
 [![Codecov test
 coverage](https://codecov.io/gh/traitecoevo/earthtones/branch/master/graph/badge.svg)](https://app.codecov.io/gh/traitecoevo/earthtones?branch=master)
 [![R-CMD-check](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/traitecoevo/earthtones/actions/workflows/R-CMD-check.yaml)
@@ -31,13 +36,13 @@ schemes.
 Install the released version from CRAN:
 
 ``` r
-#install.packages("earthtones")
+# install.packages("earthtones")
 ```
 
 Or the latest development version from GitHub:
 
 ``` r
-remotes::install_github("wcornwell/earthtones")
+# remotes::install_github("traitecoevo/earthtones")
 ```
 
 Load the package:
@@ -64,7 +69,7 @@ get_earthtones(latitude = 36.094994, longitude = -111.837962,
                zoom = 12, number_of_colors = 8)
 ```
 
-![](readme_files/figure-markdown_github/grand_canyon-1.png)<!-- -->
+![](man/figures/grand_canyon-1.png)<!-- -->
 
 Adjust `number_of_colors` to control how many dominant colors are
 returned. The `zoom` parameter controls the level of detail, with larger
@@ -78,7 +83,7 @@ Explore vibrant tropical colors:
 get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5)
 ```
 
-![](readme_files/figure-markdown_github/bahamas-1.png)<!-- -->
+![](man/figures/bahamas-1.png)<!-- -->
 
 ### Example: Uluru, Australia
 
@@ -88,7 +93,7 @@ Earth tones from the iconic Australian landscape:
 get_earthtones(latitude = -25.33, longitude = 131.0396, zoom = 10, number_of_colors = 6)
 ```
 
-![](readme_files/figure-markdown_github/uluru-1.png)<!-- -->
+![](man/figures/uluru-1.png)<!-- -->
 
 ## Using Palettes in Your Own Visualizations
 
@@ -128,7 +133,7 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
        fill = "Cylinders")
 ```
 
-![](readme_files/figure-markdown_github/ggplot_example-1.png)<!-- -->
+![](man/figures/ggplot_example-1.png)<!-- -->
 
 ## Contributing
 
@@ -148,8 +153,7 @@ citation("earthtones")
 #> 
 #>   Cornwell W, Lyons M, Murray N (2025). _earthtones: Derive a Color
 #>   Palette from a Particular Location on Earth_. R package version
-#>   0.2.0, commit 07ed455773577ab5b0a2a68cd45b0f1384ab2a7f,
-#>   <https://github.com/wcornwell/earthtones>.
+#>   0.2.0, <https://CRAN.R-project.org/package=earthtones>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -157,8 +161,8 @@ citation("earthtones")
 #>     title = {earthtones: Derive a Color Palette from a Particular Location on Earth},
 #>     author = {Will Cornwell and Mitch Lyons and Nick Murray},
 #>     year = {2025},
-#>     note = {R package version 0.2.0, commit 07ed455773577ab5b0a2a68cd45b0f1384ab2a7f},
-#>     url = {https://github.com/wcornwell/earthtones},
+#>     note = {R package version 0.2.0},
+#>     url = {https://CRAN.R-project.org/package=earthtones},
 #>   }
 ```
 
