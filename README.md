@@ -59,8 +59,10 @@ library("earthtones")
 ### Example: Grand Canyon
 
 ``` r
-get_earthtones(latitude = 36.094994, longitude = -111.837962, 
-               zoom = 12, number_of_colors = 6)
+get_earthtones(
+  latitude = 36.094994, longitude = -111.837962,
+  zoom = 12, number_of_colors = 6
+)
 ```
 
 ![](man/figures/grandcanyon-1.png)<!-- -->
@@ -74,8 +76,10 @@ numbers providing closer views.
 Explore vibrant tropical colors, using the default kmeans clustering:
 
 ``` r
-get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5,
-               method="kmeans")
+get_earthtones(
+  latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5,
+  method = "kmeans"
+)
 ```
 
 ![](man/figures/bahamaskmeans-1.png)<!-- -->
@@ -84,9 +88,11 @@ or use a different clustering algorithm (Partitioning Around Medoids) to
 choose the colors from image:
 
 ``` r
-get_earthtones(latitude = 24.2, longitude = -77.88, 
-               zoom = 11, number_of_colors = 5,
-              method="pam")
+get_earthtones(
+  latitude = 24.2, longitude = -77.88,
+  zoom = 11, number_of_colors = 5,
+  method = "pam"
+)
 ```
 
 ![](man/figures/bahamaspam-1.png)<!-- -->
@@ -104,12 +110,14 @@ get_earthtones(latitude = -25.33, longitude = 131.0396, zoom = 10, number_of_col
 ## Using Palettes in Your Own Visualizations
 
 To retrieve the color palette without plotting the map, set
-`include.map = FALSE`:
+`include_map = FALSE`:
 
 ``` r
-palette <- get_earthtones(latitude = 24.2, longitude = -77.88,
-                          zoom = 11, number_of_colors = 5,
-                          include.map = FALSE)
+palette <- get_earthtones(
+  latitude = 24.2, longitude = -77.88,
+  zoom = 11, number_of_colors = 5,
+  include_map = FALSE
+)
 
 print(palette)
 #> [1] "#4A4E35" "#A5A188" "#84D4D3" "#D3DCC9" "#29B3CF"
@@ -126,17 +134,21 @@ Here’s how you might apply the palette to a `ggplot2` visualization:
 library(ggplot2)
 
 # Generate the palette
-bahamas_palette <- get_earthtones(latitude = 24.2, longitude = -77.88,
-                                  zoom = 11, number_of_colors = 3,
-                                  include.map = FALSE)
+bahamas_palette <- get_earthtones(
+  latitude = 24.2, longitude = -77.88,
+  zoom = 11, number_of_colors = 3,
+  include_map = FALSE
+)
 
 # Example ggplot
 ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
   geom_bar() +
   scale_fill_manual(values = bahamas_palette) +
   theme_minimal() +
-  labs(title = "MTCARS Cylinders with Bahamas Earthtones",
-       fill = "Cylinders")
+  labs(
+    title = "MTCARS Cylinders with Bahamas Earthtones",
+    fill = "Cylinders"
+  )
 ```
 
 ![](man/figures/ggplot_example-1.png)<!-- -->
@@ -157,18 +169,16 @@ using:
 citation("earthtones")
 #> To cite package 'earthtones' in publications use:
 #> 
-#>   Cornwell W, Lyons M, Murray N (2025). _earthtones: Derive a Color
+#>   Cornwell W, Lyons M, Murray N (????). _earthtones: Derive a Color
 #>   Palette from a Particular Location on Earth_. R package version
-#>   0.2.0, <https://CRAN.R-project.org/package=earthtones>.
+#>   0.2.1.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {earthtones: Derive a Color Palette from a Particular Location on Earth},
 #>     author = {Will Cornwell and Mitch Lyons and Nick Murray},
-#>     year = {2025},
-#>     note = {R package version 0.2.0},
-#>     url = {https://CRAN.R-project.org/package=earthtones},
+#>     note = {R package version 0.2.1},
 #>   }
 ```
 

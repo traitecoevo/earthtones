@@ -70,8 +70,10 @@ library("earthtones")
 ### Example: Grand Canyon
 
 ```{r grandcanyon}
-get_earthtones(latitude = 36.094994, longitude = -111.837962, 
-               zoom = 12, number_of_colors = 6)
+get_earthtones(
+  latitude = 36.094994, longitude = -111.837962,
+  zoom = 12, number_of_colors = 6
+)
 ```
 
 Adjust `number_of_colors` to control how many dominant colors are returned. The `zoom` parameter controls the level of detail, with larger numbers providing closer views.
@@ -81,16 +83,20 @@ Adjust `number_of_colors` to control how many dominant colors are returned. The 
 Explore vibrant tropical colors, using the default kmeans clustering:
 
 ```{r bahamaskmeans}
-get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5,
-               method="kmeans")
+get_earthtones(
+  latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors = 5,
+  method = "kmeans"
+)
 ```
 
 or use a different clustering algorithm (Partitioning Around Medoids) to choose the colors from image:
 
 ```{r bahamaspam}
-get_earthtones(latitude = 24.2, longitude = -77.88, 
-               zoom = 11, number_of_colors = 5,
-              method="pam")
+get_earthtones(
+  latitude = 24.2, longitude = -77.88,
+  zoom = 11, number_of_colors = 5,
+  method = "pam"
+)
 ```
 
 ### Example: Uluru, Australia
@@ -103,12 +109,14 @@ get_earthtones(latitude = -25.33, longitude = 131.0396, zoom = 10, number_of_col
 
 ## Using Palettes in Your Own Visualizations
 
-To retrieve the color palette without plotting the map, set `include.map = FALSE`:
+To retrieve the color palette without plotting the map, set `include_map = FALSE`:
 
 ```{r}
-palette <- get_earthtones(latitude = 24.2, longitude = -77.88,
-                          zoom = 11, number_of_colors = 5,
-                          include.map = FALSE)
+palette <- get_earthtones(
+  latitude = 24.2, longitude = -77.88,
+  zoom = 11, number_of_colors = 5,
+  include_map = FALSE
+)
 
 print(palette)
 ```
@@ -123,17 +131,21 @@ Here's how you might apply the palette to a `ggplot2` visualization:
 library(ggplot2)
 
 # Generate the palette
-bahamas_palette <- get_earthtones(latitude = 24.2, longitude = -77.88,
-                                  zoom = 11, number_of_colors = 3,
-                                  include.map = FALSE)
+bahamas_palette <- get_earthtones(
+  latitude = 24.2, longitude = -77.88,
+  zoom = 11, number_of_colors = 3,
+  include_map = FALSE
+)
 
 # Example ggplot
 ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) +
   geom_bar() +
   scale_fill_manual(values = bahamas_palette) +
   theme_minimal() +
-  labs(title = "MTCARS Cylinders with Bahamas Earthtones",
-       fill = "Cylinders")
+  labs(
+    title = "MTCARS Cylinders with Bahamas Earthtones",
+    fill = "Cylinders"
+  )
 ```
 
 ## Contributing

@@ -10,8 +10,8 @@ get_earthtones(
   zoom = 11,
   number_of_colors = 3,
   method = "pam",
-  sampleRate = 500,
-  include.map = TRUE,
+  sample_rate = 500,
+  include_map = TRUE,
   provider = "Esri.WorldImagery",
   ...
 )
@@ -25,29 +25,33 @@ get_earthtones(
 
 \item{number_of_colors}{Numeric. Number of dominant colors to extract.}
 
-\item{method}{Character. Clustering method to identify dominant colors. Options are \code{"kmeans"} (\code{\link[stats]{kmeans}}) or \code{"pam"} (\code{\link[cluster]{pam}} - partitioning around medoids).}
+\item{method}{Character. Clustering method to identify dominant colors. Options are \code{"kmeans"}
+(\code{\link[stats]{kmeans}}) or \code{"pam"} (\code{\link[cluster]{pam}} - partitioning around medoids).}
 
-\item{sampleRate}{Numeric. Subsampling factor; higher values reduce computation by sampling fewer pixels.}
+\item{sample_rate}{Numeric. Subsampling factor; higher values reduce computation by sampling fewer pixels.}
 
-\item{include.map}{Logical. If \code{TRUE}, returns both the color palette and the satellite image raster. If \code{FALSE}, returns only the color palette.}
+\item{include_map}{Logical. If \code{TRUE}, returns both the color palette and the satellite image raster.
+If \code{FALSE}, returns only the color palette.}
 
 \item{provider}{Character. Tile provider for satellite imagery. Currently supports \code{"Esri.WorldImagery"}.}
 
 \item{...}{Additional arguments passed to internal functions (currently unused).}
 }
 \value{
-An object of class \code{"palette"} if \code{include.map = TRUE}, containing:
+An object of class \code{"palette"} if \code{include_map = TRUE}, containing:
 \itemize{
   \item \code{pal}: A vector of hexadecimal color codes representing the dominant colors.
   \item \code{map}: A raster image object of the satellite imagery.
 }
-If \code{include.map = FALSE}, returns a vector of hexadecimal color codes.
+If \code{include_map = FALSE}, returns a vector of hexadecimal color codes.
 }
 \description{
 Download a satellite image from a selected provider, extract dominant colors, and generate an earth-tone palette.
 }
 \details{
-The function retrieves satellite imagery from the specified provider, extracts colors by converting the imagery into a perceptually uniform color space, and applies a clustering algorithm to determine dominant colors. Zoom level and location significantly influence the palette generated.
+The function retrieves satellite imagery from the specified provider, extracts colors by converting
+the imagery into a perceptually uniform color space, and applies a clustering algorithm to
+determine dominant colors. Zoom level and location significantly influence the palette generated.
 }
 \examples{
 \dontrun{
@@ -56,8 +60,9 @@ get_earthtones(latitude = 24.2, longitude = -77.88, zoom = 11, number_of_colors 
 
 # Return palette only, without map
 get_earthtones(latitude = 24.2, longitude = -77.88,
-               zoom = 11, number_of_colors = 5, include.map = FALSE)
+               zoom = 11, number_of_colors = 5, include_map = FALSE)
 }
+
 }
 \seealso{
 \code{\link[maptiles]{get_tiles}}, \code{\link[stats]{kmeans}}, \code{\link[cluster]{pam}}
