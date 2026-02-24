@@ -29,13 +29,13 @@ schemes.
 Install the released version from CRAN:
 
 ``` r
-# install.packages("earthtones")
+install.packages("earthtones")
 ```
 
 Or the latest development version from GitHub:
 
 ``` r
-# remotes::install_github("traitecoevo/earthtones")
+remotes::install_github("traitecoevo/earthtones")
 ```
 
 Load the package:
@@ -102,7 +102,10 @@ get_earthtones(
 Earth tones from the iconic Australian landscape:
 
 ``` r
-get_earthtones(latitude = -25.33, longitude = 131.0396, zoom = 10, number_of_colors = 4)
+get_earthtones(
+  latitude = -25.33, longitude = 131.0396, zoom = 10,
+  number_of_colors = 4
+)
 ```
 
 ![](man/figures/uluru-1.png)<!-- -->
