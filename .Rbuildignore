@@ -3,11 +3,10 @@
 ^README\.Rmd$
 ^ignore$
 ^x_archive$
-^.github$
-^.git$
-^codecov\.yml$
 ^\.github$
-^todo.md
+^\.git$
+^codecov\.yml$
+^todo\.md$
 ^vignettes/articles$
 ^_pkgdown\.yml$
 ^docs$
@@ -16,7 +15,8 @@
 ^Meta$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
-^revdep
-^.DS_Store$
+^revdep$
+^\.DS_Store$
 ^help$
 ^readme_files$
+^\.lintr$
